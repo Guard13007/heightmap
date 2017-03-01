@@ -24,8 +24,16 @@ local function max(t)
     return r
 end
 
-local function create(width, height, f, rangeMin, rangeMax)
-    local map = heightmap.create(width, height, f)
+local function create(width, height, f_or_min, min_or_max, max_if_f)
+    if type(f_or_min) == "function" then
+        local map = heightmap.create(width, height, f)
+        local rangeMin = min_or_max
+        local rangeMax = max_if_f
+    else
+        local map = heightmap.create(width, height)
+        local rangeMin = f_or_min
+        local rangeMax = min_or_max
+    end
 
     local minimum = min(map)
     local initialRange = max(map) - minimum
