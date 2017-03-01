@@ -4,7 +4,7 @@ Heightmap
 Overview
 --------
 
-A Lua module by Marc Lepage for producing heightmaps.
+A Lua module by Marc Lepage for producing heightmaps. Modified by Guard13007 to add built-in normalization.
 
 The heightmap module uses the diamond-square algorithm to generate cloud or plasma fractal heightmaps which can be used for terrain.
 
@@ -32,6 +32,12 @@ Usage
 
     -- use it to create a larger non-square heightmap
     map = heightmap.create(100, 200, f)
+    
+    -- create a map with normalized range of -1 to 1
+    map = heightmap.create(150, 300, -1, 1)
+
+    -- use the custom height function and normalize with a range of 10 to 20
+    map = heightmap.create(200, 200, f, 10, 20)
 
 How it Works
 ------------
