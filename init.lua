@@ -1,6 +1,6 @@
 math.randomseed(os.time())
 
-local heightmap = require((...)\gsub("%.", "/") .. "/heightmap")
+local heightmap = require((...):gsub("%.", "/") .. "/heightmap")
 
 local floor = math.floor
 
