@@ -28,24 +28,11 @@ local function create(width, height, f, rangeMin, rangeMax)
     local map = heightmap.create(width, height, f)
 
     local minimum = min(map)
-    local maximum = max(map)
-
-    --[[
-    -- if minimum is below zero, + everything till minimum is zero
-    if minimum < 0 then
-        for i=0,#map do
-            for j=0,#map[0] do
-                map[i][j] = map[i][j] - minimum
-            end
-        end
-    end
-    --]]
-
-    -- normalize range of values to desired range
+    local initialRange = max(map) - minimum
+    local finalRange = rangeMax - rangeMin
     for i=0,#map do
         for j=0,#map[0] do
-            --floor(map[i][j] * NEW_MAX_VALUE / maximum)
-            map[i][j] = (map[i][j] - minimum) / (maximum - minimum)
+            map[i][j] = (map[i][j] - minimum) / initialRange * finalRange + rangeMin
         end
     end
 
