@@ -11,33 +11,35 @@ The heightmap module uses the diamond-square algorithm to generate cloud or plas
 Usage
 -----
 
-    -- import module
-    require "heightmap"
+```lua
+-- import module
+local heightmap = require "heightmap"
 
-    -- create 32x32 heightmap
-    map = heightmap.create(32, 32)
+-- create 32x32 heightmap
+map = heightmap.create(32, 32)
 
-    -- examine each height value
-    for x = 0, map.w do
-        for y = 0, map.h do
-            print(map[x][y])
-        end
+-- examine each height value
+for x = 0, map.w do
+    for y = 0, map.h do
+        print(map[x][y])
     end
+end
 
-    -- define a custom height function
-    -- (reusing the default but scaling it)
-    function f(map, x, y, d, h)
-        return 2 * heightmap.defaultf(map, x, y, d, h)
-    end
+-- define a custom height function
+-- (reusing the default but scaling it)
+function f(map, x, y, d, h)
+    return 2 * heightmap.defaultf(map, x, y, d, h)
+end
 
-    -- use it to create a larger non-square heightmap
-    map = heightmap.create(100, 200, f)
-    
-    -- create a map with normalized range of -1 to 1
-    map = heightmap.create(150, 300, -1, 1)
+-- use it to create a larger non-square heightmap
+map = heightmap.create(100, 200, f)
 
-    -- use the custom height function and normalize with a range of 10 to 20
-    map = heightmap.create(200, 200, f, 10, 20)
+-- create a map with normalized range of -1 to 1
+map = heightmap.create(150, 300, -1, 1)
+
+-- use the custom height function and normalize with a range of 10 to 20
+map = heightmap.create(200, 200, f, 10, 20)
+```
 
 How it Works
 ------------
